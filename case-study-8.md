@@ -1,13 +1,18 @@
-CASE STUDY 8
+BYU-Idaho Student Business Competition Analysis
 ================
 Ricky Warner
 October 31, 2020
 
 # Background
 
-This was a project I created for my MATH 335 Data Wrangling and
-Visualization class. As part of project requirements, I had to clean
-sales data from a variety of student-run companies and
+As part of the Business Program at BYU-Idaho, all business students are
+required to create and manage a business as part of their degree. As
+part of one of our case studies for Data Wrangling and Visualization
+(MATH 335), we received a compiled list of all transactions across all
+student run businesses from April until July 2016. Our task was to clean
+the dates using the lubridate package and gain additional insights into
+the financials of each student run business. Below details some of the
+findings:
 
 ``` r
 cost <- cost %>%
@@ -64,12 +69,12 @@ negatives %>%
   theme(legend.position = "none")
 ```
 
-![](case-study-8_files/figure-gfm/plot_data-1.png)<!-- -->
+<img src="case-study-8_files/figure-gfm/plot_data-1.png" style="display: block; margin: auto;" />
 
 ## Highest Sales
 
 Another important aspect to look at is who is making the most “high
-purchaes” as this could be a sign that the company offers a valuable
+purchases” as this could be a sign that the company offers a valuable
 product that is high demand. From the graph below, it appears that
 LaBelle and SplashandDash had the highest “higher” purchases. It appears
 though that the other companies have more dense sales towards the lower
@@ -88,7 +93,7 @@ end.
   theme(legend.position = "none")
 ```
 
-![](case-study-8_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+<img src="case-study-8_files/figure-gfm/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
 ## Weekly Performance
 
@@ -114,7 +119,7 @@ doesn’t look good.
    theme_minimal()
 ```
 
-![](case-study-8_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+<img src="case-study-8_files/figure-gfm/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 ## Monthly Performance
 
@@ -135,7 +140,7 @@ there growth is still positive.
    facet_wrap(~Name)
 ```
 
-![](case-study-8_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+<img src="case-study-8_files/figure-gfm/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 ## Daily Sales
 
@@ -155,7 +160,7 @@ positive %>%
        title = "Total Profits for Each Company") + facet_wrap(~Name)
 ```
 
-![](case-study-8_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+<img src="case-study-8_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 ## Overall Money Earned
 
@@ -178,4 +183,4 @@ positive %>%
         axis.ticks.x=element_blank())
 ```
 
-![](case-study-8_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+<img src="case-study-8_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />

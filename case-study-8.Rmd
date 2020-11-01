@@ -3,7 +3,7 @@ title: "BYU-Idaho Student Business Competition Analysis"
 author: "Ricky Warner"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  #rmarkdown::github_document
+  rmarkdown::github_document
   #html_document:  
   #keep_md: true
    #toc: true
