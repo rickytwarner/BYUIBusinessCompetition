@@ -3,15 +3,19 @@ title: "CASE STUDY 8"
 author: "Ricky Warner"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_document:  
-    keep_md: true
-    toc: true
-    toc_float: true
-    code_folding: hide
-    fig_height: 6
-    fig_width: 12
-    fig_align: 'center'
+  rmarkdown::github_document
+ # html_document:  
+  #keep_md: true
+   #toc: true
+   #toc_float: true
+    #code_folding: hide
+    #fig_height: 6
+    #fig_width: 12
+    #fig_align: 'center'
 ---
+# Background
+
+This was a project I created for my MATH 335 Data Wrangling and Visualization class. As part of project requirements, I had to clean sales data from a variety of student-run companies and 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, options(knitr.table.format = "html"))
@@ -20,6 +24,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, options(kni
 ```{r, load_libraries, include = FALSE}
 library(tidyverse)
 library(lubridate)
+# Update 10.29.20 - old package has depreciated, check to see if any changes need to be made to existing code
 library(ggpubr)
 ```
 

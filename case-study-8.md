@@ -1,27 +1,15 @@
----
-title: "CASE STUDY 8"
-author: "Ricky Warner"
-date: "July 07, 2018"
-output:
-  html_document:  
-    keep_md: true
-    toc: true
-    toc_float: true
-    code_folding: hide
-    fig_height: 6
-    fig_width: 12
-    fig_align: 'center'
----
+CASE STUDY 8
+================
+Ricky Warner
+October 31, 2020
 
+# Background
 
+This was a project I created for my MATH 335 Data Wrangling and
+Visualization class. As part of project requirements, I had to clean
+sales data from a variety of student-run companies and
 
-
-
-
-
-
-
-```r
+``` r
 cost <- cost %>%
   mutate(time = ymd_hms(Time, tz = "UTC")) %>%
   mutate(time = with_tz(time, tz = "MST")) %>%
@@ -53,12 +41,18 @@ month <- positive %>%
   summarise(total = sum(Amount))
 ```
 
-## Returns 
+## Returns
 
-An important aspect when comparing companies is ensuring that there are no negatives (no returns) as a company might have high return rate which would hurt profit margins. Also, accounting mistakes happen and based on the dataset, it appears that instead of actually using an accounting software to keep track of some expenditures, they simply show a negative withdrawal on their products. From the graph below, it appears that there is not any significant differences amongst the companies in terms of overall costs to their sales.
+An important aspect when comparing companies is ensuring that there are
+no negatives (no returns) as a company might have high return rate which
+would hurt profit margins. Also, accounting mistakes happen and based on
+the dataset, it appears that instead of actually using an accounting
+software to keep track of some expenditures, they simply show a negative
+withdrawal on their products. From the graph below, it appears that
+there is not any significant differences amongst the companies in terms
+of overall costs to their sales.
 
-
-```r
+``` r
 negatives %>%
   ggplot(aes(time, positive, col = Name)) +
   geom_point() +
@@ -70,13 +64,18 @@ negatives %>%
   theme(legend.position = "none")
 ```
 
-![](case-study-8_files/figure-html/plot_data-1.png)<!-- -->
-  
+![](case-study-8_files/figure-gfm/plot_data-1.png)<!-- -->
+
 ## Highest Sales
 
-Another important aspect to look at is who is making the most "high purchaes" as this could be a sign that the company offers a valuable product that is high demand. From the graph below, it appears that LaBelle and SplashandDash had the highest "higher" purchases. It appears though that the other companies have more dense sales towards the lower end.
+Another important aspect to look at is who is making the most “high
+purchaes” as this could be a sign that the company offers a valuable
+product that is high demand. From the graph below, it appears that
+LaBelle and SplashandDash had the highest “higher” purchases. It appears
+though that the other companies have more dense sales towards the lower
+end.
 
-```r
+``` r
  positive %>%
   filter(Amount < 150) %>%
   filter(day != "Sun" & day != "Sat") %>%
@@ -89,14 +88,19 @@ Another important aspect to look at is who is making the most "high purchaes" as
   theme(legend.position = "none")
 ```
 
-![](case-study-8_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+![](case-study-8_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-## Weekly Performance 
+## Weekly Performance
 
-Another important factor that we need to consider in evaluation of companies is overal trend. While their sales might be strong, there might be evidence of lowering profits which isn't good for the overall company. From the graph below, it appears that Frozone, LaBelle, and Tacento show the strongest signs of growth and theirfore would be a safer inverstment. The others appear to have negative trends which doesn't look good.
+Another important factor that we need to consider in evaluation of
+companies is overal trend. While their sales might be strong, there
+might be evidence of lowering profits which isn’t good for the overall
+company. From the graph below, it appears that Frozone, LaBelle, and
+Tacento show the strongest signs of growth and theirfore would be a
+safer inverstment. The others appear to have negative trends which
+doesn’t look good.
 
-
-```r
+``` r
  week %>%
   ggplot() + 
   geom_line(aes(week, total, col = Name)) +
@@ -110,13 +114,16 @@ Another important factor that we need to consider in evaluation of companies is 
    theme_minimal()
 ```
 
-![](case-study-8_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](case-study-8_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-## Monthly Performance 
+## Monthly Performance
 
-From the graph below, it shows that almost all companies have or are currently experiencing either a decline in sales or a slowing of sales. The one company that still appears to keep a positive path is LaBelle as there growth is still positive.
+From the graph below, it shows that almost all companies have or are
+currently experiencing either a decline in sales or a slowing of sales.
+The one company that still appears to keep a positive path is LaBelle as
+there growth is still positive.
 
-```r
+``` r
  month %>%
   ggplot() + 
   geom_line(aes(month, total, col = Name)) +
@@ -128,12 +135,15 @@ From the graph below, it shows that almost all companies have or are currently e
    facet_wrap(~Name)
 ```
 
-![](case-study-8_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
- 
-## Daily Sales
-An interesting note is that all of the companies appear to have better sales on Fridays over any other day. The only exception is SplashandDash which appears to have Thursday as their most impressive day. 
+![](case-study-8_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-```r
+## Daily Sales
+
+An interesting note is that all of the companies appear to have better
+sales on Fridays over any other day. The only exception is SplashandDash
+which appears to have Thursday as their most impressive day.
+
+``` r
 positive %>%
   filter(day != "Sun" & day != "Sat") %>%
   group_by(day, Name) %>%
@@ -145,14 +155,15 @@ positive %>%
        title = "Total Profits for Each Company") + facet_wrap(~Name)
 ```
 
-![](case-study-8_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](case-study-8_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ## Overall Money Earned
 
-It appears that the best company in terms of overall profit for the semester is HotDiggity followed by LaBelle. So, the best companies to invest in are HotDiggity and LaBelle. 
+It appears that the best company in terms of overall profit for the
+semester is HotDiggity followed by LaBelle. So, the best companies to
+invest in are HotDiggity and LaBelle.
 
-
-```r
+``` r
 positive %>%
   group_by(Name) %>%
   summarize(total = sum(Amount)) %>%
@@ -167,5 +178,4 @@ positive %>%
         axis.ticks.x=element_blank())
 ```
 
-![](case-study-8_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
-
+![](case-study-8_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
