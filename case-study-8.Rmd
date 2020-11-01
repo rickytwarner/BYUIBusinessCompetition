@@ -1,10 +1,10 @@
 ---
-title: "CASE STUDY 8"
+title: "BYU-Idaho Student Business Competition Analysis"
 author: "Ricky Warner"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  rmarkdown::github_document
- # html_document:  
+  #rmarkdown::github_document
+  #html_document:  
   #keep_md: true
    #toc: true
    #toc_float: true
@@ -15,7 +15,7 @@ output:
 ---
 # Background
 
-This was a project I created for my MATH 335 Data Wrangling and Visualization class. As part of project requirements, I had to clean sales data from a variety of student-run companies and 
+As part of the Business Program at BYU-Idaho, all business students are required to create and manage a business as part of their degree. As part of one of our case studies for Data Wrangling and Visualization (MATH 335), we received a compiled list of all transactions across all student run businesses from April until July 2016. Our task was to clean the dates using the lubridate package and gain additional insights into the financials of each student run business. Below details some of the findings:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, options(knitr.table.format = "html"))
@@ -24,14 +24,13 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, options(kni
 ```{r, load_libraries, include = FALSE}
 library(tidyverse)
 library(lubridate)
-# Update 10.29.20 - old package has depreciated, check to see if any changes need to be made to existing code
 library(ggpubr)
 ```
 
 
-```{r include=FALSE, load_data}
+```{r, include=FALSE, load_data}
 cost <- read_csv('https://byuistats.github.io/M335/data/sales.csv')
-cost <- na.omit(cost)
+cost <- na.omit(cost) 
 ```
 
 ```{r tidy_data}
@@ -71,7 +70,7 @@ month <- positive %>%
 
 An important aspect when comparing companies is ensuring that there are no negatives (no returns) as a company might have high return rate which would hurt profit margins. Also, accounting mistakes happen and based on the dataset, it appears that instead of actually using an accounting software to keep track of some expenditures, they simply show a negative withdrawal on their products. From the graph below, it appears that there is not any significant differences amongst the companies in terms of overall costs to their sales.
 
-```{r plot_data}
+```{r plot_data, fig.align="center"}
 negatives %>%
   ggplot(aes(time, positive, col = Name)) +
   geom_point() +
@@ -85,8 +84,8 @@ negatives %>%
   
 ## Highest Sales
 
-Another important aspect to look at is who is making the most "high purchaes" as this could be a sign that the company offers a valuable product that is high demand. From the graph below, it appears that LaBelle and SplashandDash had the highest "higher" purchases. It appears though that the other companies have more dense sales towards the lower end.
-```{r}
+Another important aspect to look at is who is making the most "high purchases" as this could be a sign that the company offers a valuable product that is high demand. From the graph below, it appears that LaBelle and SplashandDash had the highest "higher" purchases. It appears though that the other companies have more dense sales towards the lower end.
+```{r, fig.align="center"}
  positive %>%
   filter(Amount < 150) %>%
   filter(day != "Sun" & day != "Sat") %>%
@@ -103,7 +102,7 @@ Another important aspect to look at is who is making the most "high purchaes" as
 
 Another important factor that we need to consider in evaluation of companies is overal trend. While their sales might be strong, there might be evidence of lowering profits which isn't good for the overall company. From the graph below, it appears that Frozone, LaBelle, and Tacento show the strongest signs of growth and theirfore would be a safer inverstment. The others appear to have negative trends which doesn't look good.
 
-```{r}
+```{r, fig.align="center"}
  week %>%
   ggplot() + 
   geom_line(aes(week, total, col = Name)) +
@@ -120,7 +119,7 @@ Another important factor that we need to consider in evaluation of companies is 
 ## Monthly Performance 
 
 From the graph below, it shows that almost all companies have or are currently experiencing either a decline in sales or a slowing of sales. The one company that still appears to keep a positive path is LaBelle as there growth is still positive.
-```{r}
+```{r, fig.align="center"}
  month %>%
   ggplot() + 
   geom_line(aes(month, total, col = Name)) +
@@ -134,7 +133,7 @@ From the graph below, it shows that almost all companies have or are currently e
  
 ## Daily Sales
 An interesting note is that all of the companies appear to have better sales on Fridays over any other day. The only exception is SplashandDash which appears to have Thursday as their most impressive day. 
-```{r}
+```{r, fig.align="center"}
 
 positive %>%
   filter(day != "Sun" & day != "Sat") %>%
@@ -151,7 +150,7 @@ positive %>%
 
 It appears that the best company in terms of overall profit for the semester is HotDiggity followed by LaBelle. So, the best companies to invest in are HotDiggity and LaBelle. 
 
-```{r}
+```{r, fig.align="center"}
 
 positive %>%
   group_by(Name) %>%
