@@ -2,7 +2,7 @@ BYU-Idaho’s Shark Tank: Comparing Which Student-Run Business Is Worth
 Investing In
 ================
 Ricky Warner
-2020-11-07
+2020-11-08
 
 # Background
 
@@ -109,7 +109,7 @@ negatives.count %>%
             axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)))
 ```
 
-![](case-study-8_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+<img src="case-study-8_files/figure-gfm/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
 ## Total Revenue Generated
 

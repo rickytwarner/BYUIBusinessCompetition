@@ -93,7 +93,7 @@ negatives.total %>% # Change this to be a bar chart containing the totals for ea
 ```
 
 In order to get a better understanding of the returns, we'll need compare returns per company by total count. A count of all returns by company reveals that while Hotdiggity is indeed the leader for returns at 70 returns; however, Frozone is actually not far behind it with a grand total of 56 returns. This graph reveals that Tacento is actually the lowest company for returns with a grand total of 41 returns. This could suggest that Tacento had the highest customer satisfaction with their product. 
-```{r}
+```{r, fig.align="center"}
 
 
 negatives.count %>%
