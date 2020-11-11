@@ -2,7 +2,7 @@ BYU-Idaho’s Shark Tank: Comparing Which Student-Run Business Is Worth
 Investing In
 ================
 Ricky Warner
-2020-11-08
+2020-11-10
 
 # Background
 
@@ -17,6 +17,8 @@ was a potential investor looking to invest in one of the student run
 businesses. Below details some of the insights I gained researching each
 company as well as my final pick if I were to invest in one of the
 businesses.
+
+# Cleaning
 
 ``` r
 # Cleaning Data
@@ -61,19 +63,16 @@ day <- positive %>% # Grouip transactions by company and day
 month <- positive %>% # Group transactions by company and month 
   group_by(Name, month) %>%
   summarise(total = sum(Amount))
-
-hour <- positive %>%
-  group_by(Name, hour) %>%
-  summarise(total = sum(Amount))
 ```
 
 ## Returns
 
 All of the student-run businesses experienced returns. HotDiggity has
-the highest returns at a grand total of 1476.63 while Frozone holds the
-lowest total of 569.14. While this could suggest that HotDiggity has the
-highest customer dissatisfaction rate, it is important to remember that
-HotDiggity could be offering a more expensive product.
+the highest returns at a grand total of $1476.63 while Frozone holds the
+lowest total of $569.14. However, we cannot conclude from this alone
+that HotDiggity has the higest customer dissatisfaction. It could simply
+be they offer a more expensive product. A better way to gain insights
+into the return is by the number of returns.
 
 ``` r
 negatives.total %>% # Change this to be a bar chart containing the totals for each company 
@@ -88,14 +87,12 @@ negatives.total %>% # Change this to be a bar chart containing the totals for ea
 
 <img src="case-study-8_files/figure-gfm/plot_data-1.png" style="display: block; margin: auto;" />
 
-In order to get a better understanding of the returns, we’ll need
-compare returns per company by total count. A count of all returns by
-company reveals that while Hotdiggity is indeed the leader for returns
-at 70 returns; however, Frozone is actually not far behind it with a
-grand total of 56 returns. This graph reveals that Tacento is actually
-the lowest company for returns with a grand total of 41 returns. This
-could suggest that Tacento had the highest customer satisfaction with
-their product.
+A count of all returns by company reveals that while Hotdiggity is
+indeed the leader for returns at 70 returns; however, Frozone is
+actually not far behind it with a grand total of 56 returns. This graph
+reveals that Tacento is actually the lowest company for returns with a
+grand total of 41 returns. This could suggest that Tacento had the
+highest customer satisfaction with their product.
 
 ``` r
 negatives.count %>%
@@ -114,8 +111,8 @@ negatives.count %>%
 ## Total Revenue Generated
 
 Probably one of the most important indicators of how successful a
-company is is revenue generated. According to the graph below, it
-appears that HotDiggity leads in terms of total revenue generated.
+company is is revenue generated. According to the graph below,
+HotDiggity leads in terms of total revenue generated.
 
 ``` r
 positive %>%
@@ -136,13 +133,12 @@ positive %>%
 
 # Forecasting Future Growth
 
-Another important factor that we need to consider in evaluation of
-companies is overal trend. While their sales might be strong, there
-might be evidence of lowering profits which isn’t good for the overall
-company. From the graph below, it appears that Frozone, LaBelle, and
-Tacento show the strongest signs of growth and theirfore would be a
-safer inverstment. The others appear to have negative trends which
-doesn’t look good.
+Another important consideration for the evaluation of companies is
+overall trend. While their sales might be strong, there might be
+evidence of lowering profits which isn’t good for the overall company.
+As shown by the graph below, Frozone, LeBelle, and Tacento show the
+strongest signs of growth and therefore would be a safer investment. The
+others concerningly have negative forecasts.
 
 ``` r
  week %>%
@@ -155,7 +151,8 @@ doesn’t look good.
   facet_wrap(~Name) + 
    geom_smooth(aes(week, total, col = Name), method = "lm", se = F) +
    scale_x_discrete(limits = seq(20,28,2)) +
-   theme_minimal()
+   theme_minimal() + 
+  theme(legend.position = "none")
 ```
 
 <img src="case-study-8_files/figure-gfm/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
@@ -164,32 +161,30 @@ doesn’t look good.
 
 After carefully reviewing the data, I have come to the conclusion that
 out of all of the companies that were reviewed, I would invest in
-LaBelle. LaBelle was in the middle with total of 57 returns. It also had
+LeBelle. LeBelle was in the middle with total of 57 returns. It also had
 the second highest revenue generated at 18185.55. The most promising
 factor in this decision is the forecast. According to the forecast,
-LaBelle had the most promsing long term growth, suggesting outpacing
-even HotDiggity in terms of total revenue.
+LeBelle had the most promsing long term growth, theoretically even
+outpacing HotDiggity in terms of total revenue.
 
 # Other Information We Would Need To Make A Decision
 
 While the data presents a nice picture into the finanicials of the
 company. There is additional information that would be greatly
 beneficial in determining whether or not the company is worth investing
-in:
-
-<br> Profit Margins: We currently have no idea how much it costs to make
-each product. This is very critical as even if the company is making
-enough sales, it might not be enough to cover total company expenses.
-<br> Employees: We would need an understanding how much we would have to
-pay each employees as well as how many employees the company would need
-to meet customer demand. <br> Customer Reviews: It would be beneficial
-to have some customer feedback as to what they like and dislike. A
-rating system like stars could also be beneficial to provide a
-quantitative understanding of how popular the company is as well. <br>
-Expenses/Debt: How is the company’s financial standing? Does it have a
-healthy amount of debt? How much have they paid off the equipment? Are
-there any routine or upcoming investments that will need to be made in
-order to help the growth of the company?
+in: <br> <br> Profit Margins: We currently have no idea how much it
+costs to make each product. This is very critical as even if the company
+is making enough sales, it might not be enough to cover total company
+expenses. <br> Employees: We would need an understanding how much we
+would have to pay each employees as well as how many employees the
+company would need to meet customer demand. <br> Customer Reviews: It
+would be beneficial to have some customer feedback as to what they like
+and dislike. A rating system like stars could also be beneficial to
+provide a quantitative understanding of how popular the company is as
+well. <br> Expenses/Debt: How is the company’s financial standing? Does
+it have a healthy amount of debt? How much have they paid off the
+equipment? Are there any routine or upcoming investments that will need
+to be made in order to help the growth of the company?
 
 # Bonus: Hourly Sales Analysis
 
@@ -198,15 +193,21 @@ sales on Fridays over any other day. The only exception is SplashandDash
 which appears to have Thursday as their most impressive day.
 
 ``` r
-positive %>%
-  filter(day != "Sun" & day != "Sat") %>%
-  group_by(day, Name) %>%
-  summarize(total = sum(Amount)) %>%
-  ggplot() +
-  geom_bar(aes(day, total, fill = day), stat = "identity") + theme_minimal() +
-  labs(x = "Day of the Week",
-       y = "Total Amount Earned (in dollars)",
-       title = "Total Profits for Each Company") + facet_wrap(~Name)
+hour <- positive %>%
+  filter(Name == "LeBelle") %>%
+  group_by(hour) %>%
+  summarise(total = sum(Amount)) %>%
+  mutate(hour = as.character(hour))
+
+
+hour %>%
+  ggplot() + 
+  geom_bar(aes(hour, total, fill = hour), stat = "identity") + 
+  labs(x = "Hour",
+       y = "Revenue",
+       title = "Hourly Analysis of LeBelle") + 
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
 
 <img src="case-study-8_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
